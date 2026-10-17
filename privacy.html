@@ -23,13 +23,14 @@
       <p class="lead">
         Your reflections are personal. This policy explains what Rioba collects, why, and the control you have over your information.
       </p>
-      <p class="meta">Last updated May 2026</p>
+      <p class="meta">Last updated October 2026</p>
 
       <section>
         <h2>Information we collect</h2>
         <p>We aim to collect only what is needed to give you a meaningful, personalized experience:</p>
         <ul>
           <li>Account details you provide when you register — your email address and optional display name.</li>
+          <li>Your date of birth and gender, which the app asks for when you create an account.</li>
           <li>Your preferences, such as Bible translation, guidance tone, prayer style, and app color theme.</li>
           <li>
             Content you create in the app, including guidance questions and responses, saved verses and prayers,
@@ -37,7 +38,7 @@
           </li>
           <li>
             Subscription status (free, trial, or Premium) and usage counts used to enforce plan limits (for example,
-            daily chat caps and saved-item limits).
+            how many guidance answers you have had today and how many items you have saved).
           </li>
           <li>Basic technical information (device type and app version) used to keep the app stable.</li>
         </ul>
@@ -47,9 +48,9 @@
         <h2>How we use your information</h2>
         <ul>
           <li>To generate Scripture-centered guidance tailored to your preferences.</li>
-          <li>To provide the daily encouragement feed (verse, prayer, and reflection).</li>
+          <li>To provide Daily, with a verse, a short prayer, and a question for reflection.</li>
           <li>To save your journal, reflections, chats, and settings across your devices.</li>
-          <li>To sync multi-day devotional plan progress when you use Premium.</li>
+          <li>To sync multi-day devotional plan progress.</li>
           <li>To verify your account, process subscriptions, and keep the service secure.</li>
           <li>To diagnose problems and improve the app over time.</li>
         </ul>
@@ -58,26 +59,47 @@
       <section>
         <h2>AI processing</h2>
         <p>
-          To create guidance and some daily content, the questions and context you submit are sent to our AI provider
-          (Google's Gemini service) for processing. We send only what is needed to answer your request. Please avoid
-          including sensitive personal details you would not want processed by a third-party service.
+          When you ask for guidance, what you write in that conversation is sent to Google's Gemini service so it can
+          prepare a reply. The last few earlier messages of the same conversation are sent with it, so the reply can
+          follow what you have already said. Requests go through Rioba's own server, which checks that you are signed
+          in and passes them on to Gemini; it does not keep what you wrote. Please avoid including sensitive personal
+          details you would not want processed by a third-party service.
         </p>
+        <ul>
+          <li>Your journal entries are never sent to the AI.</li>
+          <li>Bible verse text comes from a Bible stored in the app, not from the AI.</li>
+          <li>The short prayer and question on Daily are written with AI from that day's verse.</li>
+        </ul>
       </section>
 
       <section>
         <h2>Subscriptions &amp; payments</h2>
         <p>
           Premium subscriptions are sold through Apple In-App Purchase and Google Play Billing. We do not collect or
-          store your full payment card details — those are handled by Apple or Google. We may receive subscription
-          status and related identifiers needed to unlock Premium features.
+          store your full payment card details — those are handled by Apple or Google. Subscription status is managed
+          through RevenueCat, which receives your account's user ID and your purchase records from Apple or Google so
+          that Premium works on every device you sign in to. Our server asks RevenueCat whether your account has
+          Premium when you reach the free daily guidance limit.
+        </p>
+      </section>
+
+      <section>
+        <h2>The free daily guidance limit</h2>
+        <p>
+          Free accounts can receive a set number of guidance answers each day. To keep that limit fair, our server
+          counts each day's answers per email address, so deleting an account and creating a new one with the same
+          address does not start the day again. The count is stored in Google Firebase under a one-way code made
+          from your email address with a secret key, never under the address itself, together with the date and
+          that day's count. This record is not removed when you delete your account. It is deleted automatically
+          within a few days.
         </p>
       </section>
 
       <section>
         <h2>Storage &amp; security</h2>
         <p>
-          When you sign in, your account and synced content are stored using Google Firebase. Data is encrypted in
-          transit. Local copies may also be kept on your device for offline access. While we take reasonable measures
+          When you sign in, your account and synced content are stored using Google Firebase. Guidance requests pass
+          through our server, which is hosted by Vercel. Data is encrypted in transit. Local copies may also be kept on your device for offline access. While we take reasonable measures
           to protect your information, no method of transmission or storage is ever completely secure.
         </p>
       </section>
@@ -86,8 +108,9 @@
         <h2>How we share information</h2>
         <p>
           We do not sell your personal information. We share data only with the service providers that make the app
-          work — such as Firebase (authentication and cloud storage), Google Gemini (AI guidance), and Apple/Google
-          (subscription billing) — and only as needed to provide the service or when required by law.
+          work — such as Firebase (authentication and cloud storage), Google Gemini (AI guidance), Vercel (hosting
+          for our guidance server), RevenueCat (subscription status), and Apple/Google (subscription billing) — and
+          only as needed to provide the service or when required by law.
         </p>
       </section>
 
@@ -95,7 +118,11 @@
         <h2>Your choices &amp; rights</h2>
         <ul>
           <li>You can review and edit your profile and preferences at any time in Settings.</li>
-          <li>You can sign out or delete your account from Settings when signed in.</li>
+          <li>
+            You can sign out or delete your account from Settings when signed in. Deleting your account removes your
+            account and the data synced to it, except the daily guidance count described above, which is deleted
+            automatically within a few days.
+          </li>
           <li>
             You can manage or cancel a Premium subscription in your device's App Store or Google Play subscription
             settings.
